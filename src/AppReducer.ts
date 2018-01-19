@@ -31,7 +31,12 @@ const AppReducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
     case 'TODO_CLICKED':
       console.log('WOOOO! I was clicked');
-      return state;
+      state.todos.map(function(todo: TodoProps) {
+        if (todo.title === (action as TodoAction).todo.title) {
+          todo.completed = !todo.completed;
+        }
+      });
+      break;
     default:
       console.warn('I was not handled 😢');
   }
